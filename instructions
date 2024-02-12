@@ -34,7 +34,7 @@ sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule require
 
 To create a pod that you can use as a Kafka client run the following commands:
 
-    kubectl run kafka-test-client --restart='Never' --image docker.io/bitnami/kafka:3.6.1-debian-11-r6 --namespace fenton-neuroscience --command -- sleep infinity
+    kubectl run kafka-test-client2 --restart='Never' --image docker.io/bitnami/kafka:3.6.1-debian-11-r6 --namespace fenton-neuroscience --command -- sleep infinity
     kubectl cp --namespace fenton-neuroscience /path/to/client.properties kafka-test-client:/tmp/client.properties
     kubectl exec --tty -i kafka-test-client --namespace fenton-neuroscience -- bash
 
@@ -46,3 +46,7 @@ To create a pod that you can use as a Kafka client run the following commands:
 
 
 
+To git commit:
+git add .
+git commit -am "updated"
+git push -u origin kafka

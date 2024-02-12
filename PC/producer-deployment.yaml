@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kafka-producer-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: kafka-producer
+        image: registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer:latest
+        command: ["python"]
+        args: ["./producer.py"]
+        env:
+        - name: KAFKA_BROKER_LIST
+          value: "kafka-test-controller-0.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-1.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-2.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092"
+        - name: KAFKA_TOPIC
+          value: "topic"
+        - name: KAFKA_SECURITY_PROTOCOL
+          value: "SASL_PLAINTEXT"
+        - name: KAFKA_SASL_MECHANISM
+          value: "PLAIN"
+        # Removed KAFKA_SASL_JAAS_CONFIG; use KAFKA_SASL_USERNAME and KAFKA_SASL_PASSWORD instead
+        - name: KAFKA_SASL_USERNAME
+          value: "user1"
+        - name: KAFKA_SASL_PASSWORD
+          value: "o7Aj0AWHeM"
+      restartPolicy: Never
+  backoffLimit: 0

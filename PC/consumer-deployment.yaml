@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kafka-consumer-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: kafka-consumer
+        image: registry.hsrn.nyu.edu/vip/corelink-examples/kafka-consumer:latest
+        command: ["python3"]
+        args: ["./consumer.py"]
+        env:
+        - name: KAFKA_BROKER_LIST
+          value: "kafka-test-controller-0.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-1.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-2.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092"
+        - name: KAFKA_TOPIC
+          value: "topic"
+        - name: KAFKA_SECURITY_PROTOCOL
+          value: "SASL_PLAINTEXT"
+        - name: KAFKA_SASL_MECHANISM
+          value: "PLAIN"
+        - name: KAFKA_SASL_JAAS_CONFIG
+          value: "org.apache.kafka.common.security.scram.ScramLoginModule required username='user1' password='o7Aj0AWHeM';"
+      restartPolicy: Never
+  backoffLimit: 0

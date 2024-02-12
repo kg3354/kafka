@@ -1,0 +1,25 @@
+// first change requirements and dockerfile to consumer
+
+docker buildx build  -t registry.hsrn.nyu.edu/vip/corelink-examples/kafka-consumer .  --platform linux/amd64
+docker push registry.hsrn.nyu.edu/vip/corelink-examples/kafka-consumer
+
+// then change to producer
+
+docker buildx build  -t registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer .  --platform linux/amd64
+docker push registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer
+
+
+// apply to k8s
+
+kubectl apply -f consumer-deployment.yaml
+kubectl apply -f producer-deployment.yaml
+
+
+// to delete:
+kubectl delete job kafka-consumer-job
+kubectl delete job kafka-producer-job
+
+// to get output
+// replace xxxx with actual pod name
+kubectl cp kafka-consumer-job-xxxx:/usr/src/app/consumer_output.txt ./consumer_output.txt    
+

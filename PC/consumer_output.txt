@@ -1,0 +1,22 @@
+Received message: {'key': 'value'}
+Received message: {'value': 0, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 1, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 2, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 3, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 4, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 5, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 6, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 7, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 8, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 9, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 10, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 11, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 12, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 13, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 14, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 15, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 16, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 17, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 18, 'timestamp': '2024-02-12 20:40:29'}
+Received message: {'value': 19, 'timestamp': '2024-02-12 20:40:30'}
+Received message: {'value': 20, 'timestamp': '2024-02-12 20:40:30'}
