@@ -1,3 +1,9 @@
+// downloading it locally
+helm pull bitnami/kafka --version <version> --untar
+
+// to deploy
+helm install kafka-test . -f values.yaml
+
 
 Release "kafka-test" has been upgraded. Happy Helming!
 NAME: kafka-test
@@ -45,7 +51,7 @@ To create a pod that you can use as a Kafka client run the following commands:
         kafka-console-consumer.sh             --consumer.config /tmp/client.properties             --bootstrap-server kafka-test.fenton-neuroscience.svc.cluster.local:9092             --topic test             --from-beginning
 
 
-To Dockerpush:
+//To Dockerpush inside the ProducuerConsumer path:
 docker buildx build  -t registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer .  --platform linux/amd64
 docker push registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer
 
