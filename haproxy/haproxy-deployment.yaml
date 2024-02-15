@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haproxy-kafka
+  template:
+    metadata:
+      labels:
+        app: haproxy-kafka
+    spec:
+      containers:
+      - name: haproxy-kafka
+        image: registry.hsrn.nyu.edu/vip/corelink-examples/haproxy:latest
+        ports:
+        - containerPort: 9094
+     

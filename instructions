@@ -45,6 +45,11 @@ To create a pod that you can use as a Kafka client run the following commands:
         kafka-console-consumer.sh             --consumer.config /tmp/client.properties             --bootstrap-server kafka-test.fenton-neuroscience.svc.cluster.local:9092             --topic test             --from-beginning
 
 
+To Dockerpush:
+docker buildx build  -t registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer .  --platform linux/amd64
+docker push registry.hsrn.nyu.edu/vip/corelink-examples/kafka-producer
+
+
 
 To git commit:
 git add .

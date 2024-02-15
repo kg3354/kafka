@@ -1,0 +1,10 @@
+
+//Use any running pod to find the dns servername:
+
+kubectl exec -it kafka-test-client   -- cat /etc/resolv.conf
+
+// TO build dockerfile:
+docker buildx build  -t registry.hsrn.nyu.edu/vip/corelink-examples/haproxy .  --platform linux/amd64
+docker push registry.hsrn.nyu.edu/vip/corelink-examples/haproxy
+
+// use apply -f to put it onto cluster

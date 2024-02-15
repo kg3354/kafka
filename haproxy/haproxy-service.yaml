@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: haproxy-kafka-service
+spec:
+  type: NodePort
+  ports:
+    - port: 9094
+      targetPort: 9094
+      nodePort: 30094 # Optional: Specify a nodePort in the range allowed by your cluster if you want a specific port
+  selector:
+    app: haproxy-kafka
