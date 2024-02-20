@@ -11,7 +11,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logging.info("Initializing Kafka producer...")
 
 # Read configurations from environment variables
-bootstrap_servers = os.getenv('KAFKA_BROKER_LIST', 'kafka-test-controller-0.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-1.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-2.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092')
+# bootstrap_servers = os.getenv('KAFKA_BROKER_LIST', 'kafka-test-controller-0.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-1.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092,kafka-test-controller-2.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092')
+bootstrap_servers = os.getenv('KAFKA_BROKER_LIST', '10.32.250.16:30858,10.32.250.16:31436,10.32.250.16:32281')
 sasl_mechanism = os.getenv('KAFKA_SASL_MECHANISM', 'PLAIN')
 security_protocol = os.getenv('KAFKA_SECURITY_PROTOCOL', 'SASL_PLAINTEXT')  # Default to SASL_PLAINTEXT if not specified
 sasl_username = os.getenv('KAFKA_SASL_USERNAME', 'user1')  # Use separate env var for username
@@ -36,6 +37,9 @@ def send_message(topic):
         data = {'value': i, 'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         producer.send(topic, data)
         producer.flush()
+    data = {'message':"Seems like its working"}
+    producer.send(topic, data)
+    producer.flush()
         
     logging.info(f"Message sent to topic {topic}: {message}")
 
