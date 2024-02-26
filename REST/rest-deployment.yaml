@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-plaintext-rest-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-plaintext-rest-proxy
+  template:
+    metadata:
+      labels:
+        app: kafka-plaintext-rest-proxy
+    spec:
+      containers:
+      - name: kafka-plaintext-rest-proxy
+        image: confluentinc/cp-kafka-rest:latest
+        env:
+        - name: KAFKA_REST_BOOTSTRAP_SERVERS
+          value: "PLAINTEXT://kafka-plaintext-controller-0.kafka-plaintext-controller-headless.fenton-neuroscience.svc.cluster.local:9092,PLAINTEXT://kafka-plaintext-controller-1.kafka-plaintext-controller-headless.fenton-neuroscience.svc.cluster.local:9092,PLAINTEXT://kafka-plaintext-controller-2.kafka-plaintext-controller-headless.fenton-neuroscience.svc.cluster.local:9092"
+        - name: KAFKA_REST_LISTENERS
+          value: "http://0.0.0.0:8082"
+        ports:
+        - containerPort: 8082
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-plaintext-rest-proxy-service
+spec:
+  selector:
+    app: kafka-plaintext-rest-proxy
+  ports:
+  - protocol: TCP
+    port: 8082
+    targetPort: 8082
