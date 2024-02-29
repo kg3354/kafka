@@ -8,3 +8,5 @@ docker buildx build  -t registry.hsrn.nyu.edu/vip/corelink-examples/haproxy .  -
 docker push registry.hsrn.nyu.edu/vip/corelink-examples/haproxy
 
 // use apply -f to put it onto cluster
+kubectl apply -f haproxy-deployment.yaml
+kubectl apply -f haproxy-service.yaml

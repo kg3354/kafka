@@ -1,0 +1,16 @@
+# defaults
+#     mode tcp
+#     timeout connect 5000ms
+#     timeout client 50000ms
+#     timeout server 50000ms
+
+# frontend kafka_front
+#     bind *:9094
+#     default_backend kafka_back
+
+# backend kafka_back
+#     balance roundrobin
+#     # server kafka-test-controller-0 kafka-test-controller-0.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092 check
+#     # server kafka-test-controller-1 kafka-test-controller-1.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092 check
+#     # server kafka-test-controller-2 kafka-test-controller-2.kafka-test-controller-headless.fenton-neuroscience.svc.cluster.local:9092 check
+#     server kafka-test.fenton-neuroscience.svc.cluster.local:9092 check

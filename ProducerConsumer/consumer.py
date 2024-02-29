@@ -57,13 +57,13 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # Configure and create a Consumer with your specific settings
 consumer = Consumer({
-    'bootstrap.servers': '10.32.250.16:30858,10.32.250.16:31436,10.32.250.16:32281',
+    'bootstrap.servers': '10.32.250.20:32597,10.32.250.21:30136,10.32.250.16:30879',
     'group.id': 'python-consumer',
     'auto.offset.reset': 'earliest',
     'security.protocol': 'SASL_PLAINTEXT',
-    'sasl.mechanism': 'PLAIN',
+    'sasl.mechanism': 'SCRAM-SHA-256',
     'sasl.username': 'user1',
-    'sasl.password': 'o7Aj0AWHeM'
+    'sasl.password': 'B2XdUZHpWB'
 })
 
 # Subscribe to your topic

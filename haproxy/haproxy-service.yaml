@@ -3,10 +3,15 @@ kind: Service
 metadata:
   name: haproxy-kafka-service
 spec:
-  type: NodePort
-  ports:
-    - port: 9094
-      targetPort: 9094
-      nodePort: 30094 
-  selector:
-    app: haproxy-kafka
+   type: NodePort
+   ports:
+   - port: 80
+     targetPort: 80
+     nodePort: 31080
+     name: http
+   - port: 443
+     targetPort: 443
+     nodePort: 31443
+     name: https
+   selector:
+     app: haproxy-kafka

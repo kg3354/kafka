@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-rest-proxy
+  namespace: fenton-neuroscience
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-rest-proxy
+  template:
+    metadata:
+      labels:
+        app: kafka-rest-proxy
+    spec:
+      containers:
+      - name: kafka-rest-proxy
+        image: confluentinc/cp-kafka-rest:latest
+        env:
+        - name: KAFKA_REST_BOOTSTRAP_SERVERS
+          value: "SASL_PLAINTEXT://kafka-controller-0.kafka-controller-headless.fenton-neuroscience.svc.cluster.local:9092,SASL_PLAINTEXT://kafka-controller-1.kafka-controller-headless.fenton-neuroscience.svc.cluster.local:9092,SASL_PLAINTEXT://kafka-controller-2.kafka-controller-headless.fenton-neuroscience.svc.cluster.local:9092"
+        - name: KAFKA_REST_LISTENERS
+          value: "http://0.0.0.0:8082"
+        - name: KAFKA_REST_CLIENT_SECURITY_PROTOCOL
+          value: "SASL_PLAINTEXT"  # Ensure this is correctly set
+        - name: KAFKA_REST_CLIENT_SASL_MECHANISM
+          value: "SCRAM-SHA-256"
+        - name: KAFKA_REST_CLIENT_SASL_JAAS_CONFIG
+          value: 'org.apache.kafka.common.security.scram.ScramLoginModule required username="user1" password="B2XdUZHpWB";'
+        ports:
+        - containerPort: 8082
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-rest-proxy-service
+spec:
+  selector:
+    app: kafka-rest-proxy
+  ports:
+  - protocol: TCP
+    port: 8082
+    targetPort: 8082

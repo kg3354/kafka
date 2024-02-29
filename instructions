@@ -147,7 +147,7 @@ sasl.mechanism=SCRAM-SHA-256
 sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required \
     username="user1" \
     password="$(kubectl get secret kafka-test-user-passwords --namespace fenton-neuroscience -o jsonpath='{.data.client-passwords}' | base64 -d | cut -d , -f 1)";
-
+	B2XdUZHpWB
 
  Obtain pod configuration: 
 (base) guobuzai@10-18-211-59 kafka % kubectl exec -it kafka-test-controller-2 -- cat /opt/bitnami/kafka/config/server.properties | grep advertised.listeners
@@ -158,4 +158,8 @@ advertised.listeners=CLIENT://kafka-test-controller-2.kafka-test-controller-head
 30858
 31436
 32281
+
+
+
+
 
